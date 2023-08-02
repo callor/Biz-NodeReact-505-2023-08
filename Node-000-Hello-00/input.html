@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>나의 홈페이지</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <input name="name" placeholder="이름을 입력하세요" />
+    <p class="name"></p>
+  </body>
+  <script>
+    document
+      .querySelector("input[name='name']")
+      .addEventListener("change", (e) => {
+        const text = e.target.value;
+        console.log(text);
+        document.querySelector("p.name").innerHTML = text;
+      });
+  </script>
+</html>
