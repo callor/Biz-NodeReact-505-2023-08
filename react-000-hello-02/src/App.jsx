@@ -23,7 +23,12 @@ function App() {
     <>
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+          <img
+            onClick={() => alert("test")}
+            src={logo}
+            className="App-logo"
+            alt="logo"
+          />
         </header>
       </div>
       <section>{bbsList}</section>
