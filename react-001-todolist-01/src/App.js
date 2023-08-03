@@ -1,3 +1,4 @@
+import TodoMain from "./comps/TodoMain";
 import "./css/App.css";
 
 // App Component Main
@@ -10,6 +11,7 @@ const App = () => {
       <header>
         <h1>오늘 할일</h1>
       </header>
+      <TodoMain />
     </div>
   );
 };
