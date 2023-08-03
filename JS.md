@@ -14,5 +14,5 @@
 
 ## JavaScript Front-End
 
-1. AngularJS, ReactJS, VeuJS 등이 연달아 발표되면서 JS 를 사용한 Front-End 개발환경이 형된다.
-2. Angular, React, Veu 라는 단축이름으로 불리우고, Svelt 등의 새로운 도구가 탄생하고 있다
+1. AngularJS, ReactJS, VueJS 등이 연달아 발표되면서 JS 를 사용한 Front-End 개발환경이 형된다.
+2. Angular, React, Vue 라는 단축이름으로 불리우고, Svelt 등의 새로운 도구가 탄생하고 있다
