@@ -1,25 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import "./css/App.css";
 
-function App() {
+// App Component Main
+const App = () => {
+  // 여러가지 설정
+
+  // App Component 의 본문(Body)
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header>
+        <h1>오늘 할일</h1>
       </header>
     </div>
   );
-}
+};
 
+// App Component 를 다른 Component, Container 에서 import 할수 있도록
+// Export 하기
 export default App;
