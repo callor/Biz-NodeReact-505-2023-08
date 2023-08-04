@@ -119,3 +119,22 @@ root.render(
 ## create-react-app 을 이용한 React Project 생성
 
 `npx create-react-app [project]`
+
+## NodeJS 와 React 연동할때 port 충돌 방지
+
+- NodeJS 는 기본 3000 Port 에서 실행
+- React 의 실행 Port 변경
+- package.json 의 다음 Script 변경
+- 윈도우
+
+```json
+"start":"react-scripts start" 를
+"start" : "set PORT=5000 && react-scripts start" 으로
+```
+
+- Ma ans Linux
+
+```json
+"start":"react-scripts start" 를
+"start" : "export PORT=5000 && react-scripts start" 으로
+```
