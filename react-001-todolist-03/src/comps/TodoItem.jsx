@@ -25,14 +25,14 @@ const TodoItem = (props) => {
         &times;
       </div>
       <div className="sdate">
-        <div>{props.item.sdate}</div>
-        <div>{props.item.stime}</div>
+        <div>{item.sdate}</div>
+        <div>{item.stime}</div>
       </div>
       <div
         onClick={(e) => contentClickHandler(e, item.id)}
-        className={props.item.complete ? "content line" : "content"}
+        className={item.complete ? "content line" : "content"}
       >
-        {props.item.content}
+        {item.content}
       </div>
       <div
         className="complete"

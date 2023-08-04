@@ -1,11 +1,16 @@
 import TodoInput from "./TodoInput";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../css/Todo.css";
 import TodoList from "./TodoList";
 
 // initData.js 에서 export 한 함수들 중에서
 // initData() 함수만 필요하니 구조분해를 통하여 import
 import { initData } from "../data/initData";
+
+// uuid.func()
+// uuid()
+// react-uuid 의 export type 이 무엇일까?
+import uuid from "react-uuid";
 
 // dto.initData()
 // dto.func1()
@@ -33,14 +38,24 @@ const TodoMain = () => {
   // initData() 함수를 실행하여
   // initData() 함수가 생성한(return 한) 객체로 todo 를 초기화
   const [todo, setTodo] = useState(() => initData());
+  const [todoList, setTodoList] = useState(() => {
+    return localStorage.getItem("TODOLIST")
+      ? JSON.parse(localStorage.getItem("TODOLIST"))
+      : [];
+  });
 
-  // const [content, setContent] = useState("");
-  const [todoList, setTodoList] = useState([]);
+  useEffect(() => {
+    const resetTodo = () => {
+      setTodo(initData());
+      console.log("Use Effect");
+      localStorage.setItem("TODOLIST", JSON.stringify(todoList));
+    };
+    resetTodo();
+  }, [todoList]);
 
   // 입력한 TodoContent 를 사용하여 새로운 Todo 추가하기
   const todoListAdd = (content) => {
-    const id = todoList[todoList.length - 1]?.id + 1 || 0;
-    const newTodo = { ...todo, id: id, content: content };
+    const newTodo = { ...todo, id: uuid(), content: content };
     setTodoList([...todoList, newTodo]);
   };
 
@@ -86,20 +101,22 @@ const TodoMain = () => {
   // Update and Insert 를 실행하는 함수
   const todoInput = (content) => {
     // id 값이 null 또는 "" 이면 List 에 추가하기
-    if (!todo) {
+    if (!todo.id) {
       todoListAdd(content);
       // id 값이 null 또는 "" 이 아니면 Update 실행
     } else {
+      const updateTodo = { ...todo, content: content };
       const updateTodoList = todoList.map((item) => {
         if (item.id === todo.id) {
-          return { ...item, content: content };
+          return updateTodo; // { ...item, content: content };
         }
         return item;
       });
+      // setState 함수
       setTodoList(updateTodoList);
     }
     // Add 또는 Update 를 실행 후 Todo 를 초기화 하기
-    setTodo(initData());
+    // setTodo(initData());
   };
 
   return (

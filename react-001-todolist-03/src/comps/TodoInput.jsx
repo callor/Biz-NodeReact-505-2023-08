@@ -17,6 +17,7 @@ const TodoInput = (props) => {
   // const [content, setContent] = useState("");
 
   // const [n1, n2] = ["대한민국","우리나라"]
+  // todo, setTodo, todoInput
   const { todo, setTodo, todoInput } = props;
 
   const inputChangeHandler = (e) => {
@@ -53,8 +54,9 @@ const TodoInput = (props) => {
       <button
         onClick={btnClickHandler}
         disabled={todo.content.length < 2}
+        className={todo.id ? "update" : ""}
       >
-        저장
+        {todo.id ? "변경" : "추가"}
       </button>
     </div>
   );
