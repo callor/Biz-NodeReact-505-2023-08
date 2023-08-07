@@ -1,0 +1,21 @@
+extends ../layout 
+
+block content 
+    h1 여기는 BBS
+    table
+        tr 
+            th SEQ 
+            th 작성일자
+            th 작성자
+            th 제목
+            th 조회수
+        each item in BBS 
+            tr 
+                td= item.b_seq
+                td= item.b_date 
+                td= item.b_nickname 
+                td= item.b_title 
+                td= item.b_viewcount
+
+
+
