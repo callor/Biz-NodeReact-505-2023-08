@@ -65,7 +65,64 @@
       <div class="button">
         <button id="bbs_input">저장</button>
       </div>
+      <div class="view"></div>
     </section>
+    <script>
+      /**
+       * html 에서  입력된 내용을 "파일"과 함께 fetch 를 사용하여
+       * 서버로 업로드 하기
+       * 파일이 없는 경우 form 의 input 에 입력된 데이터를
+       * JSON 으로 변경하여 서버로 보내면 된다.
+       * 하지만 파일이 있는 경우 단순히 JSON 으로 데이터를 보낼수 없다
+       *
+       * 그래서 JS 에서는 FormData 라는 JS 객체를 준비해 두고
+       * 이 객체를 통하여 서버로 데이터를 전송하도록 하고 있다
+       *
+       * 1. JS FormData 객체를 생성
+       * 2. FormData 에 파일정보, input 정보를 append 하여 서버로 전송
+       */
+      const btn_input = document.querySelector("#bbs_input");
+      const input_image = document.querySelector("#main_image");
+      const input_images = document.querySelector("#gallery_image");
+
+      const serverURL = "http://localhost:8080/gallery/insert";
+      const upload = async () => {
+        // JS 에서 fetch 로 파일을 업로드 할때 사용할 payload 객체
+        const formData = new FormData();
+        // 업로드할 싱글 이미지를 formData 에 append
+        formData.append("b_file", input_image.files[0]);
+
+        // 업로드할 멀티 이미지를 formData 에 append
+        for (let file of input_images.files) {
+          formData.append("b_files", file);
+        }
+
+        // input box 에 입력된 데이터를 append
+        const b_nickname = document.querySelector(
+          "input[name='b_nickname']"
+        );
+        const b_title = document.querySelector(
+          "input[name='b_title']"
+        );
+        const b_content = document.querySelector(
+          "input[name='b_content']"
+        );
+        formData.append("b_nickname", b_nickname.value);
+        formData.append("b_title", b_title.value);
+        formData.append("b_content", b_content.value);
+
+        const fetchData = {
+          method: "POST",
+          body: formData,
+        };
+        const response = await fetch(serverURL, fetchData);
+        const result = await response.text();
+
+        const div_view = document.querySelector("div.view");
+        div_view.innerHTML = result;
+      }; // upload end
+      btn_input?.addEventListener("click", upload);
+    </script>
     <script>
       const image = document.querySelector("#main_image");
       const thumb_main = document.querySelector("div.thumb.main");
