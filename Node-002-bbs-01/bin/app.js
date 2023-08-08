@@ -11,6 +11,7 @@ import express from "express";
 import createError from "http-errors";
 import path from "path";
 import helmet from "helmet";
+import csp from "helmet-csp";
 
 // 3rd party lib modules
 import cookieParser from "cookie-parser";
@@ -29,6 +30,16 @@ const app = express();
 
 // helmet security module
 app.use(helmet());
+app.use(
+  csp({
+    directives: {
+      defaultSrc: ["'self'"],
+      styleSrc: ["'self'"],
+      scriptSrc: ["'self'"],
+      imgSrc: ["'unsafe-inline'", "http://localhost:3000"],
+    },
+  })
+);
 
 // MySQL DB 연결
 // 주의!!! force 를 true 로 하면 기존의 Table 을 모두 DROP 한 후 재생성 한다

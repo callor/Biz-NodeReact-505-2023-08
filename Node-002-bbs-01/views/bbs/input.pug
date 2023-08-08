@@ -11,11 +11,13 @@ block content
         div
             label(for="b_content") 내용
             input(placeholder="내용", name="b_content", id="b_content")
-        div
-            label(for="b_image") 대표이미지
-            input(placeholder="대표이미지", name="b_image", id="b_image")
-        div
-            label(for="b_images") 갤러리
-            input(placeholder="갤러리", name="b_images", id="b_images")
+        div.image_box
+            label(for="b_image") 대표이미지를 선택하세요
+            input(placeholder="대표이미지",type="file",accept="image/*", name="b_image", id="b_image")
+            div.image.main
+        div.image_box
+            label(for="b_images") 갤러리파일들을 선택하세요
+            input(placeholder="갤러리", type="file",multiple="multiple",accept="image/*", name="b_images", id="b_images")
+            div.image.gallery
         div.bbs.input.button
-            button.btn.input 저장하기
+            button.bbs.input 저장하기

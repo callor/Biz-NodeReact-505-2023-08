@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Document</title>
+    <style>
+      div.input,
+      div.button,
+      div.image {
+        width: 80%;
+        margin: 10px auto;
+      }
+
+      input {
+        display: none;
+      }
+      label {
+        display: block;
+        width: 100%;
+        background-color: #ddd;
+        text-align: center;
+      }
+      div.thumb {
+        display: flex;
+        flex-wrap: wrap;
+        border: 1px solid blue;
+      }
+
+      div.input {
+        display: flex;
+        flex-direction: column;
+      }
+
+      div.input input {
+        display: inline-block;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="main">
+      <div class="bbs input">
+        <input name="b_nickname" placeholder="작성" />
+        <input name="b_title" placeholder="제목" />
+        <input name="b_content" placeholder="내용" />
+      </div>
+      <div class="image main">
+        <label for="main_image">대표이미지</label>
+        <input type="file" accept="image/*" id="main_image" />
+        <div class="thumb main"></div>
+      </div>
+      <div class="image gallery">
+        <label for="gallery_image">겔러리</label>
+        <input
+          type="file"
+          accept="image/*"
+          id="gallery_image"
+          multiple="multiple"
+        />
+        <div class="thumb gallery"></div>
+      </div>
+      <div class="button">
+        <button id="bbs_input">저장</button>
+      </div>
+    </section>
+    <script>
+      const image = document.querySelector("#main_image");
+      const thumb_main = document.querySelector("div.thumb.main");
+      const gallery = document.querySelector("#gallery_image");
+      const thumb_gallery = document.querySelector(
+        "div.thumb.gallery"
+      );
+
+      gallery?.addEventListener("change", (e) => {
+        const files = e.target.files;
+
+        // html tag 들을 forEach 사용할때는 for( of ) 를 사용한다
+        thumb_gallery.innerHTML = "";
+        for (let file of files) {
+          const img = document.createElement("img");
+          img.src = URL.createObjectURL(file);
+          img.width = 50;
+          img.height = 50;
+          thumb_gallery.appendChild(img);
+        }
+      });
+
+      image?.addEventListener("change", (e) => {
+        const file = e.target.files[0];
+        console.dir(file);
+        console.log(file);
+
+        const img = document.createElement("img");
+        img.src = URL.createObjectURL(file);
+        img.width = 100;
+        img.height = 100;
+        thumb_main.innerHTML = "";
+        thumb_main.appendChild(img);
+      });
+    </script>
+  </body>
+</html>
