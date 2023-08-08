@@ -1,0 +1,21 @@
+extends ../layout
+
+block content
+    div.bbs.input
+        div
+            label(for="b_nickname") 작성자
+            input(placeholder="작성자", name="b_nickname", id="b_nickname")
+        div
+            label(for="b_title") 제목
+            input(placeholder="제목", name="b_title", id="b_title")
+        div
+            label(for="b_content") 내용
+            input(placeholder="내용", name="b_content", id="b_content")
+        div
+            label(for="b_image") 대표이미지
+            input(placeholder="대표이미지", name="b_image", id="b_image")
+        div
+            label(for="b_images") 갤러리
+            input(placeholder="갤러리", name="b_images", id="b_images")
+        div.bbs.input.button
+            button.btn.input 저장하기

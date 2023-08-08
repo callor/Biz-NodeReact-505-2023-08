@@ -1,0 +1,46 @@
+div.bbs.input {
+  width: 60vw;
+  border: 1px solid #ddd;
+  border-radius: 15px;
+  padding: 16px;
+  margin: 10px auto;
+}
+
+div.bbs.input div {
+  width: 90%;
+  padding: 3px;
+  margin: 3px;
+  display: flex;
+}
+
+div.bbs.input label,
+div.bbs.input input {
+  padding: 8px;
+}
+
+div.bbs.input label {
+  flex: 1;
+  text-align: right;
+  margin-right: 5px;
+  color: rgb(99, 99, 235);
+  font-weight: bold;
+  background-color: #a1e3ca;
+}
+div.bbs.input input {
+  flex: 3;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  outline: none;
+}
+
+div.bbs.input input:hover {
+  background-color: #ddd;
+}
+div.bbs.input input:focus {
+  background-color: #ccc;
+}
+
+div.bbs.button {
+  /* border: none; */
+  text-align: right;
+}

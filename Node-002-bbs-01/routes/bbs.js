@@ -12,4 +12,9 @@ router.get("/", async (req, res) => {
   });
 });
 
+// GET localhost:3000/bbs/insert
+router.get("/insert", (req, res) => {
+  res.render("bbs/input");
+});
+
 export default router;
