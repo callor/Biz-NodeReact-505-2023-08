@@ -1,6 +1,12 @@
 import { useState } from "react";
+import { filePreview, filesPreview } from "../modules/ImagePreview";
+
 const BBsInput = () => {
   const [image, setImage] = useState("");
+
+  const fileChangeHandler = async (e) => {
+    setImage(filePreview(e.target.files[0]));
+  };
 
   return (
     <section className="main">
@@ -11,7 +17,14 @@ const BBsInput = () => {
       </div>
       <div className="image main">
         <label htmlFor="main_image">대표이미지</label>
-        <input id="main_image" type="file" accept="image/*" />
+
+        <input
+          id="main_image"
+          type="file"
+          accept="image/*"
+          onChange={fileChangeHandler}
+        />
+
         <div className="thumb main">
           <img src={image ? image : ""} width="100px" />
         </div>
