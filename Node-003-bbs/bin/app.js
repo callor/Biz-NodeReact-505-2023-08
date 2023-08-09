@@ -15,6 +15,7 @@ import helmet from "helmet";
 // 3rd party lib modules
 import cookieParser from "cookie-parser";
 import logger from "morgan";
+import multer from "multer";
 
 // MySQL Sequelize
 import DB from "../models/index.js";
@@ -28,7 +29,10 @@ import bbsRouter from "../routes/bbs.js";
 const app = express();
 
 // helmet security module
-app.use(helmet());
+// app.use(helmet());
+// app.use(helmet.permittedCrossDomainPolicies());
+// app.use(helmet.referrerPolicy());
+// app.use(helmet.xssFilter());
 
 // MySQL DB 연결
 // 주의!!! force 를 true 로 하면 기존의 Table 을 모두 DROP 한 후 재생성 한다
@@ -46,6 +50,10 @@ app.disable("x-powered-by");
 // view engine setup
 app.set("views", path.join("views"));
 app.set("view engine", "pug");
+
+// express 에 multer middle ware 설치
+// app.use(multer().array());
+app.use(multer().single());
 
 // middleWare enable
 app.use(logger("dev"));

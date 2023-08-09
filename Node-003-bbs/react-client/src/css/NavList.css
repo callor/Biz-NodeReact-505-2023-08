@@ -1,0 +1,20 @@
+nav.main {
+  background-color: #555;
+  color: white;
+  font-weight: bold;
+}
+
+nav.main ul {
+  list-style-type: none;
+  display: flex;
+}
+
+nav.main a {
+  text-decoration: none;
+  color: inherit;
+  padding: 12px 16px;
+}
+
+nav.main a:hover {
+  background-color: #777;
+}
