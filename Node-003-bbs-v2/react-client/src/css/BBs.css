@@ -1,0 +1,30 @@
+div.input,
+div.button,
+div.image {
+  width: 80%;
+  margin: 10px auto;
+}
+
+input {
+  display: none;
+}
+label {
+  display: block;
+  width: 100%;
+  background-color: #ddd;
+  text-align: center;
+}
+div.thumb {
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid blue;
+}
+
+div.input {
+  display: flex;
+  flex-direction: column;
+}
+
+div.input input {
+  display: inline-block;
+}
