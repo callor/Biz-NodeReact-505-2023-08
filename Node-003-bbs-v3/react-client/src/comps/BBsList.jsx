@@ -15,7 +15,14 @@ const BBsList = () => {
     return (
       <tr key={bbs.b_seq} data-seq={bbs.b_seq}>
         <td>{bbs.b_seq}</td>
-        <td>{bbs.b_nickname}</td>
+        <td>
+          <img
+            src={`/static/upload/${bbs.b_image}`}
+            width="50px"
+            alt={bbs.b_origin_name}
+          />
+          <span>{bbs.b_nickname}</span>
+        </td>
         <td>{bbs.b_title}</td>
         <td>0</td>
       </tr>
