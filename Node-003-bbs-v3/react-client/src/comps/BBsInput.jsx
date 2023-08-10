@@ -2,14 +2,23 @@ import { useState, useRef } from "react";
 import { filePreview, filesPreview } from "../modules/ImagePreview";
 import { bbsInsert } from "../modules/FetchModule";
 import css from "../css/BBsInput.module.css";
+import { useBBsContext } from "../provider/BBsProvider";
 
 const BBsInput = () => {
-  const [bbs, setBBs] = useState({
-    b_seq: 0,
-    b_nickname: "",
-    b_title: "",
-    b_content: "",
-  });
+  /**
+   * BBsProvider Store 에 보관되어 있는 bbs와 setBbs() 함수를 가져와서 사용해야 하는데
+   * 그 함수를 가져오기 위하여 useContext() 라는 Hook 함수를 사용한다.
+   * useContext() 함수는 어떤 스토어에서 값들을 가져오는지 명시 해주어야 한다
+   * 그런데 BBsInput 에서는 스토어의 이름, 키 등을 알길이 없다
+   * 물론 알아 낼수는 있지만 너무 많은 코드가 필요하다
+   * 그래서 BBsProvider 에서는 자신의 스토어 정보를 포함한 사용자 정의 useContext()를
+   * 만들어 두었다
+   */
+
+  // const {bbs,setBbs} = useContext(어떤Store 에서);
+
+  const { bbs, setBBs } = useBBsContext();
+
   const [image, setImage] = useState("");
   const [images, setImages] = useState([]);
   const imgRef = useRef(null);

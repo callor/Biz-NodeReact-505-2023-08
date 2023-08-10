@@ -1,23 +1,15 @@
-import { useState, useEffect } from "react";
+import { useBBsContext } from "../provider/BBsProvider";
 import css from "../css/BBsList.module.css";
-import { getBbsList } from "../modules/FetchModule";
 
+const sampleData = [
+  { b_seq: 0, b_nickname: "홍길동", b_title: "활빈당" },
+  { b_seq: 1, b_nickname: "이몽룡", b_title: "남원부사" },
+  { b_seq: 2, b_nickname: "성춘향", b_title: "광환루" },
+  { b_seq: 3, b_nickname: "임꺽정", b_title: "황해도 대도" },
+  { b_seq: 4, b_nickname: "장녹수", b_title: "여걸" },
+];
 const BBsList = () => {
-  const [bbsList, setBbsList] = useState([
-    { b_seq: 0, b_nickname: "홍길동", b_title: "활빈당" },
-    { b_seq: 1, b_nickname: "이몽룡", b_title: "남원부사" },
-    { b_seq: 2, b_nickname: "성춘향", b_title: "광환루" },
-    { b_seq: 3, b_nickname: "임꺽정", b_title: "황해도 대도" },
-    { b_seq: 4, b_nickname: "장녹수", b_title: "여걸" },
-  ]);
-
-  useEffect(() => {
-    const fetchBBsList = async () => {
-      const result = await getBbsList();
-      setBbsList(result);
-    };
-    fetchBBsList();
-  }, []);
+  const { bbsList, setBBsList } = useBBsContext();
 
   const bbsItems = bbsList.map((bbs) => {
     return (

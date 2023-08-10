@@ -62,13 +62,15 @@ router.post(
     const body = req.body;
     // multer MiddleWare 가 파일 관련 데이터를 필터링하고, 처리한 후
     // 관련정보를 req.file 객체에 담아준다
-    const files = req.files;
+    const files = req?.files;
     const bbsDto = JSON.parse(body.bbs);
-    console.log("body ", files, bbsDto);
+    // console.log("body ", files, bbsDto);
 
     // files 이미지들 중에서 대표이미지는 첫번째 이미지 이다
-    bbsDto.b_image = files[0].filename;
-    bbsDto.b_origin_image = files[0].originalname;
+
+    bbsDto.b_image = files[0]?.filename;
+    bbsDto.b_origin_image = files[0]?.originalname;
+
     const result = await BBS.create(bbsDto);
 
     // 이미지 정보 생성 : 대표이지를 제외한 나머지만
