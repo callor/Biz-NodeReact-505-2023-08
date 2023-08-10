@@ -21,10 +21,7 @@ const { tbl_bbs: BBS, tbl_files: FILES } = DB.models;
  * return 하는 서버를 말한다.(Spring Rest Server)
  *
  * res.send() 또는 res.json() 함수로 마감한다
- *
- *
  */
-
 const Hello = {
   title: "반가워 나 Node 야!",
   message: "Hello NodeJS BBS World",
@@ -86,5 +83,10 @@ router.post(
     res.send("OK");
   }
 );
+
+router.get("/list", async (req, res) => {
+  const bbsList = await BBS.findAll();
+  return res.json(bbsList);
+});
 
 export default router;

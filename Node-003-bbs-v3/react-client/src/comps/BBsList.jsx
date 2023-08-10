@@ -1,10 +1,8 @@
-import { NavLink, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import css from "../css/BBsList.module.css";
+import { getBbsList } from "../modules/FetchModule";
 
 const BBsList = () => {
-  const navigate = useNavigate();
-
   const [bbsList, setBbsList] = useState([
     { b_seq: 0, b_nickname: "홍길동", b_title: "활빈당" },
     { b_seq: 1, b_nickname: "이몽룡", b_title: "남원부사" },
@@ -12,6 +10,14 @@ const BBsList = () => {
     { b_seq: 3, b_nickname: "임꺽정", b_title: "황해도 대도" },
     { b_seq: 4, b_nickname: "장녹수", b_title: "여걸" },
   ]);
+
+  useEffect(() => {
+    const fetchBBsList = async () => {
+      const result = await getBbsList();
+      setBbsList(result);
+    };
+    fetchBBsList();
+  }, []);
 
   const bbsItems = bbsList.map((bbs) => {
     return (
@@ -31,15 +37,6 @@ const BBsList = () => {
   str => "1 2 3 4 5 6" 과 같은 문자열을 만들어 낸다
   */
 
-  const tableClickHandler = (e) => {
-    const target = e.target;
-    // target 의 부모 중에서 가장 가까이 있는 TR 이 누구냐? select 하라
-    const tr = target.closest("TR");
-    // data-seq 로 설정한 데이터 가져오기
-    // alert(tr.dataset.seq);
-    navigate(`/bbs/detail/${tr.dataset.seq}`);
-  };
-
   return (
     <>
       <table className={css.main}>
@@ -51,16 +48,8 @@ const BBsList = () => {
             <th>조회수</th>
           </tr>
         </thead>
-        <tbody onClick={tableClickHandler}>{bbsItems}</tbody>
+        <tbody>{bbsItems}</tbody>
       </table>
-      <div className={css.main}>
-        <NavLink
-          to="/bbs/insert"
-          className={[css.link, css.hover, "test"].join(" ")}
-        >
-          추가하기
-        </NavLink>
-      </div>
     </>
   );
 };
