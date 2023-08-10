@@ -15,7 +15,6 @@ import helmet from "helmet";
 // 3rd party lib modules
 import cookieParser from "cookie-parser";
 import logger from "morgan";
-import multer from "multer";
 
 // MySQL Sequelize
 import DB from "../models/index.js";
@@ -29,10 +28,10 @@ import bbsRouter from "../routes/bbs.js";
 const app = express();
 
 // helmet security module
-// app.use(helmet());
-// app.use(helmet.permittedCrossDomainPolicies());
-// app.use(helmet.referrerPolicy());
-// app.use(helmet.xssFilter());
+app.use(helmet());
+app.use(helmet.permittedCrossDomainPolicies());
+app.use(helmet.referrerPolicy());
+app.use(helmet.xssFilter());
 
 // MySQL DB 연결
 // 주의!!! force 를 true 로 하면 기존의 Table 을 모두 DROP 한 후 재생성 한다
@@ -51,9 +50,18 @@ app.disable("x-powered-by");
 app.set("views", path.join("views"));
 app.set("view engine", "pug");
 
-// express 에 multer middle ware 설치
-// app.use(multer().array());
-// app.use(multer().single());
+/**
+ * app.use()
+ * 클라이언트에서 요청이 올라오면 모든 요청을 처리하는 함수
+ * 이 요청들을 처리한 후 router 로 전송된다
+ * app.use() 함수를 통하여 여러가지 전역 변수, 미들웨어, 각종 설정 등을 할수 있다
+ */
+// 파일을 저장할 폴더 지정
+// 클라이언트의 모든 요청은 req.uploadPath 값을 사용할수 있다
+app.use((req, res, next) => {
+  req.uploadPath = path.join("react-client/build/static/upload");
+  next();
+});
 
 // middleWare enable
 app.use(logger("dev"));
