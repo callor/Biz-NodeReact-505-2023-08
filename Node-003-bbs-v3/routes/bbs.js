@@ -27,10 +27,18 @@ const Hello = {
   message: "Hello NodeJS BBS World",
 };
 
+const encKor = (str) => {
+  console.log(str);
+  return Buffer.from(str, "latin1").toString("UTF-8");
+};
+
 // 파일을 전송하기 위한 설정값 만들기
 const storageOption = {
   filename: (req, file, cb) => {
+    console.log("FILE", file);
+    file.originalname = encKor(file.originalname);
     const originName = file.originalname;
+
     const filePrix = `${Date.now()}-${Math.round(
       Math.random() * 100000
     )}`;
