@@ -1,0 +1,87 @@
+/*
+private css 코딩
+css 파일을 .module.css 이름으로 변경
+BBS 컴포넌트에서 사용할 css 라면 BBs.module.css 처럼 생성
+이 파일의 모든 select 의 시작은 클래스
+*/
+.main {
+  width: 80%;
+  margin: 10px auto;
+  border: 1px solid green;
+}
+
+.input_container,
+.button,
+.image {
+  width: 80%;
+  margin: 10px auto;
+}
+
+.input_container div {
+  display: flex;
+}
+
+.input_container input,
+.input_container label {
+  padding: 8px;
+  margin: 3px;
+}
+
+.input_container label {
+  text-align: right;
+  color: blue;
+  flex: 1;
+  white-space: nowrap;
+}
+
+.input_container input {
+  flex: 3;
+  outline: none;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+.input_container input:focus {
+  background-color: #eee;
+}
+
+.input_container input:hover {
+  border: 1px solid #777;
+}
+
+.image_box input {
+  display: none;
+}
+
+.image_box label {
+  display: inline-block;
+  width: 80%;
+  padding: 5px;
+  background-color: #ddd;
+  color: blue;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+}
+
+.thumb {
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid blue;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+}
+
+.button button {
+  background-color: blue;
+  color: white;
+  padding: 12px 20px;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.button button:hover {
+  box-shadow: 2px 2px 2px 2px black;
+}
