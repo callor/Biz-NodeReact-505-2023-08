@@ -1,0 +1,80 @@
+.modal_close {
+  display: none;
+  background: transparent;
+}
+
+.modal_open {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal_close_button {
+  font-size: 2rem;
+  color: white;
+  font-weight: 900;
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  margin: 2rem 3rem;
+  transition: 0.3s;
+}
+
+.modal_close_button:hover {
+  transform: scale(2);
+  color: red;
+}
+
+.modal_dialog {
+  padding: 1rem;
+  width: 80%;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal_content {
+  flex: 1;
+  background-color: #fefefe;
+  padding: 20px;
+  max-width: 80%;
+  max-height: 80%;
+  overflow: auto;
+
+  border: 1px solid #aaa;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal_content .header,
+.modal_content .footer {
+  padding: 1rem;
+  background-color: #aaa;
+}
+
+.modal_content .header {
+  /*  tL, tR, bR, bL 순서로 Radius*/
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+.modal_content .footer {
+  border-radius: 0 0 0.5rem 0.5rem;
+}
+
+.modal_content .body {
+  flex: 1;
+  border: 1px solid #ddd;
+}
+
+.modal_content .body img {
+  width: 100%;
+}
