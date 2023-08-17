@@ -16,8 +16,11 @@ import {
 const BBsMain = () => {
   const [bbsDto, setBbsDto] = useState(bbsData);
   const [bbsList, setBbsList] = useState(bbsListData);
-  console.log(bbsList);
 
+  /**
+   * 가. BBsList.jsx 에서 bbsList 데이터를 props 로 받아
+   *    만들던 BBsItem 컴포넌트를 BBsMain.jsx 에서 만들고 있다
+   */
   const bbsListItemView = bbsList?.map((item) => {
     return <BBsItem item={item} key={item.id} />;
   });
@@ -42,6 +45,14 @@ const BBsMain = () => {
           path: "",
           element: (
             <>
+              {/**
+               * 나. BBsMain 영역에서 생성된 bbsListIitemView 를
+               *  BBsList 컴포넌트 사이에 주입하였다
+               *  별도의 변수로 설정하지 않았다
+               * 다. 컴포넌트 사이에 주입된 {bbsListItemView} 컴포넌트는
+               *  BBsList 에서 {children} 이라는 정해진 props 변수로 받는다
+               *
+               */}
               <BBsList>{bbsListItemView}</BBsList>
               <NavLink to="/bbs/writer">글쓰기</NavLink>,
             </>
