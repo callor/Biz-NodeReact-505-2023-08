@@ -2,6 +2,7 @@ import logo from "./logo.svg";
 import "./css/App.css";
 import { useRoutes, Outlet } from "react-router-dom";
 import BBsMain from "./comps/BBsMain";
+import { Button } from "./styled/BBsStyled";
 
 /**
  * App Component 를
@@ -25,8 +26,22 @@ function App() {
   const appRouter = useRoutes([
     {
       path: "/",
-      element: <AppBody />,
-      children: [{ path: "bbs/*", element: <BBsMain /> }],
+      element: (
+        <>
+          <AppBody />
+        </>
+      ),
+      children: [
+        {
+          path: "",
+          element: (
+            <Button bgColor="#aaa" color="#fafafa">
+              게시판 열기
+            </Button>
+          ),
+        },
+        { path: "bbs/*", element: <BBsMain /> },
+      ],
     },
   ]);
   return appRouter;
