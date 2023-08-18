@@ -16,6 +16,7 @@ import {
 
 import moment from "moment";
 import uuid from "react-uuid";
+import localforage from "localforage";
 
 const BBsBody = () => {
   return (
@@ -27,10 +28,41 @@ const BBsBody = () => {
 };
 const BBsMain = () => {
   const [bbsDto, setBbsDto] = useState(bbsData);
-  const [bbsList, setBbsList] = useState(bbsListData);
+  const [bbsList, setBbsList] = useState([]); //bbsListData);
   const navigate = useNavigate();
 
-  const bbsUpdate = () => {};
+  // 화면이 최초 랜더링된 후(Mount 된 후) 에 한번만 실행하라
+  // useEffect(() => {}, []);
+  useEffect(() => {
+    const getForage = async () => {
+      setBbsList(await localforage.getItem("BBS"));
+    };
+    getForage();
+  }, []);
+
+  // bbsList 가 변경되는 event 가 발생하면 ()=>{} 함수를 실행하라
+  // useEffect(() => {}, [bbsList]);
+  useEffect(() => {
+    const setForage = async () => {
+      await localforage.setItem("BBS", bbsList);
+    };
+    setForage();
+  }, [bbsList]);
+
+  const bbsUpdate = () => {
+    const newBbsList = bbsList.map((bbs) => {
+      if (bbs.id === bbsDto.id) {
+        const updateBbs = {
+          ...bbs,
+          bContent: bbsDto.bContent,
+          bSubject: bbsDto.bSubject,
+        };
+        return updateBbs;
+      }
+      return bbs;
+    });
+    setBbsList([...newBbsList]);
+  };
 
   const bbsInput = () => {
     // 저장 button 을 클릭하면 데이터를 어딘가에 저장하기
@@ -42,7 +74,7 @@ const BBsMain = () => {
         bDate: moment().format("YYYY[-]MM[-]DD"),
       };
     } else {
-      newBbsDto = { ...bbsDto };
+      return bbsUpdate();
     }
     setBbsList([...bbsList, newBbsDto]);
     navigate("/bbs");
