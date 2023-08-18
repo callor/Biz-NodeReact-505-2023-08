@@ -4,6 +4,7 @@ import {
   Outlet,
   NavLink,
   Navigate,
+  useNavigate,
 } from "react-router-dom";
 import BBsList from "./BBsList";
 import BBsItem from "./BBsItem";
@@ -13,26 +14,48 @@ import {
   BBsList as bbsListData,
 } from "../data/BBsData";
 
+import moment from "moment";
+import uuid from "react-uuid";
+
+const BBsBody = () => {
+  return (
+    <>
+      <h3>자유게시판</h3>
+      <Outlet />
+    </>
+  );
+};
 const BBsMain = () => {
   const [bbsDto, setBbsDto] = useState(bbsData);
   const [bbsList, setBbsList] = useState(bbsListData);
+  const navigate = useNavigate();
+
+  const bbsUpdate = () => {};
+
+  const bbsInput = () => {
+    // 저장 button 을 클릭하면 데이터를 어딘가에 저장하기
+    let newBbsDto = { ...bbsData };
+    if (!bbsDto.id) {
+      newBbsDto = {
+        ...bbsDto,
+        id: uuid(),
+        bDate: moment().format("YYYY[-]MM[-]DD"),
+      };
+    } else {
+      newBbsDto = { ...bbsDto };
+    }
+    setBbsList([...bbsList, newBbsDto]);
+    navigate("/bbs");
+  };
 
   /**
    * 가. BBsList.jsx 에서 bbsList 데이터를 props 로 받아
    *    만들던 BBsItem 컴포넌트를 BBsMain.jsx 에서 만들고 있다
    */
-  const bbsListItemView = bbsList?.map((item) => {
-    return <BBsItem item={item} key={item.id} />;
+  const bbsListItemView = bbsList?.map((item, index) => {
+    return <BBsItem item={item} key={item.id} seq={index} />;
   });
 
-  const BBsBody = () => {
-    return (
-      <>
-        <h3>자유게시판</h3>
-        <Outlet />
-      </>
-    );
-  };
   const bbsRouter = useRoutes([
     {
       // rootPath : /bbs 로 요청
@@ -62,7 +85,13 @@ const BBsMain = () => {
           // path 에 "" 이 연결된 경우
           // rootPath 와 함께 제일먼저 보여질 Component
           path: "writer",
-          element: <BBsInput />,
+          element: (
+            <BBsInput
+              bbsDto={bbsDto}
+              setBbsDto={setBbsDto}
+              bbsInput={bbsInput}
+            />
+          ),
         },
         {
           // Navigate Component
