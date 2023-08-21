@@ -17,6 +17,7 @@ const ASideBar = styled.aside`
   border-right: solid 2px #aaa;
   display: flex;
   flex-direction: column;
+  border: 1px solid green;
   & > * {
     padding-left: 2rem;
     padding-right: 2rem;
