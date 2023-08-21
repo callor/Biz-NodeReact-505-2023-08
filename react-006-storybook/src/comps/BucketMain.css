@@ -1,0 +1,12 @@
+aside {
+  width: 20rem;
+  height: 100%;
+  background-color: #f7f7f7;
+  border-radius: solid 2px #aaa;
+  display: flex;
+  flex-direction: column;
+}
+aside > * {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
