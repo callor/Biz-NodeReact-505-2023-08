@@ -19,7 +19,7 @@ const StyledInputDiv = styled.div`
   }
 `;
 
-const BucketInput = () => {
+const BucketSearch = () => {
   return (
     <StyledInputDiv>
       <Input />
@@ -29,4 +29,4 @@ const BucketInput = () => {
     </StyledInputDiv>
   );
 };
-export default BucketInput;
+export default BucketSearch;

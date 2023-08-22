@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Button from "../../shareComps/Button";
+import Button from "../shareComps/Button";
 const Container = styled.div`
   width: 200px;
 `;

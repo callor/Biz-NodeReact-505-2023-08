@@ -4,6 +4,7 @@ import {
 } from "react-router-dom";
 import BucketMain from "../comps/BucketMain";
 import { bucketLoader, bucketAction } from "../modules/routerAction";
+import BucketDetail from "../comps/BucketDetail";
 
 /**
  * RouterProvider 에 연결하여 각종 Routing 을 수행하는 설정만들기
@@ -16,6 +17,7 @@ const router = createBrowserRouter([
     element: <BucketMain />,
     loader: bucketLoader,
     action: bucketAction,
+    children: [{ path: "content/:id", element: <BucketDetail /> }],
   },
 ]);
 /**

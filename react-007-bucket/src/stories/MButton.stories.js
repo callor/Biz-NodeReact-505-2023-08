@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import MButton from "../../shareComps/MButton";
+import MButton from "../shareComps/MButton";
 
 const Container = styled.div`
   width: 200px;

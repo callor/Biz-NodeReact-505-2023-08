@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import SearchInput from "../../shareComps/SearchInput";
+import SearchInput from "../shareComps/SearchInput";
 
 const Container = styled.div`
   width: 200px;
