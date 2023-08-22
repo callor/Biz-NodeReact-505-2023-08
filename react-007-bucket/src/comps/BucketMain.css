@@ -1,0 +1,7 @@
+aside {
+  width: 22rem;
+  background-color: #f7f7f7;
+  border-right: solid 2px #cccc;
+  display: flex;
+  flex-direction: column;
+}
