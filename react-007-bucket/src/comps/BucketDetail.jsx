@@ -1,14 +1,22 @@
-import { Form, useLoaderData } from "react-router-dom";
+import { Form, useLoaderData, redirect } from "react-router-dom";
 import dImage from "../assets/default.png";
 import Button from "../shareComps/Button";
 import css from "./BucketDetail.module.scss";
-import { getBucket } from "../modules/bucketFech";
+import { deleteBucket, getBucket } from "../modules/bucketFech";
 
 export const detailLoader = async ({ params }) => {
   // const id = params.id
   const { id } = params;
   const bucket = await getBucket(id);
   return { bucket };
+};
+
+export const deleteAction = async ({ params }) => {
+  if (window.confirm("정말 삭제 할까요?")) {
+    await deleteBucket(params.id);
+    return redirect("/");
+  }
+  return redirect(`/content/${params.id}`);
 };
 
 const BucketDetail = () => {
@@ -28,7 +36,10 @@ const BucketDetail = () => {
           <Form action="edit">
             <Button>수정</Button>
           </Form>
-          <Form action="delete">
+          <Form action="complete" method="POST">
+            <Button bgColor="green">완료</Button>
+          </Form>
+          <Form action="delete" method="POST">
             <Button bgColor="red">삭제</Button>
           </Form>
         </div>

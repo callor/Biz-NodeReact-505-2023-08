@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import BucketSearch from "./BucketSearch";
-import { useLoaderData, NavLink, Outlet } from "react-router-dom";
+import { Outlet, redirect } from "react-router-dom";
 import { getBucketList, newBucket } from "../modules/bucketFech";
 import BucketList from "./BucketList";
 
@@ -10,6 +10,7 @@ const ASideBar = styled.aside`
   border-right: solid 2px #cccc;
   display: flex;
   flex-direction: column;
+  overflow: auto;
 `;
 
 /**
@@ -57,7 +58,7 @@ export const mainLoader = async () => {
 
 export const mainAction = async () => {
   const bucket = await newBucket();
-  return "";
+  return redirect(`/content/${bucket.id}/edit`);
 };
 
 const BucketMain = () => {

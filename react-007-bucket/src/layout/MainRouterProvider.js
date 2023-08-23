@@ -9,8 +9,11 @@ import BucketMain, {
 } from "../comps/BucketMain";
 
 // import { bucketLoader, bucketAction } from "../modules/routerAction";
-import BucketDetail, { detailLoader } from "../comps/BucketDetail";
-import BucketUpdate from "../comps/BucketUpdate";
+import BucketDetail, {
+  detailLoader,
+  deleteAction,
+} from "../comps/BucketDetail";
+import BucketUpdate, { updateAction } from "../comps/BucketUpdate";
 
 /**
  * RouterProvider 에 연결하여 각종 Routing 을 수행하는 설정만들기
@@ -33,10 +36,11 @@ const router = createBrowserRouter([
         path: "content/:id/edit",
         element: <BucketUpdate />,
         loader: detailLoader,
+        action: updateAction,
       },
       {
         path: "content/:id/delete",
-        element: <h1>삭제하기</h1>,
+        action: deleteAction,
       },
     ],
   },

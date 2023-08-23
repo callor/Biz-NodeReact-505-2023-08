@@ -54,6 +54,18 @@ export const getBucket = async (id) => {
   return bucket ?? null;
 };
 
+export const saveBucket = async (bucket) => {
+  const bucketList = await getBucketList();
+  const newBucketList = bucketList.map((item) => {
+    if (item.id === bucket.id) {
+      return bucket;
+    } else {
+      return item;
+    }
+  });
+  await setBucketList(newBucketList);
+};
+
 export const newBucket = async () => {
   const bucketDto = newBucketDto();
   // DB 에서 데이터를 가져왔는데 데이터가 하나도 없으면(null)
@@ -67,6 +79,12 @@ export const newBucket = async () => {
   bucketList?.unshift(bucketDto);
   await setBucketList(bucketList);
   return bucketDto;
+};
+
+export const deleteBucket = async (id) => {
+  const bucketList = await getBucketList();
+  const resultList = bucketList.filter((item) => item.id !== id);
+  await setBucketList(resultList);
 };
 
 // browser 의 indexedDB 에 BUCKETLIST 이름으로 데이터 저장하기
