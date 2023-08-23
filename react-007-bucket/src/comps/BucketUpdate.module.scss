@@ -1,0 +1,38 @@
+.bucket_form {
+  padding: 20px;
+  display: flex;
+  border: 1px solid blue;
+  & > * {
+    padding: 5px;
+  }
+  & article.first {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    min-width: 500px;
+    align-items: flex-start;
+    & div {
+      display: flex;
+      width: 100%;
+      & input,
+      label {
+        padding: 8px;
+        margin: 5px;
+      }
+      & label {
+        // 최소 폭을 100px 로 제한하기
+        flex: 1 0 150px;
+        text-align: right;
+        color: #5f5fe7;
+        font-weight: bold;
+        white-space: nowrap;
+      }
+      & input {
+        flex: 3 0 300px;
+        border-radius: 2rem;
+        border: 2px solid #aaa;
+        padding: 8px 20px;
+      }
+    }
+  }
+}

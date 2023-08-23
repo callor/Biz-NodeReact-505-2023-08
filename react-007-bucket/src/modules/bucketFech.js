@@ -33,12 +33,12 @@ export const getBucketList = async () => {
   const bucketList = await localforage.getItem(LOCAL_DB);
   // db에서 get 한 데이터가 없으면 임시 데이터를 생성하고
   // db에 insert 한 후 그 데이터를 return
-  if (!bucketList) {
-    const bucketDto = newBucketDto();
-    // indexedDb 에 추가하기
-    await setBucketList([bucketDto]);
-    return [bucketDto];
-  }
+  // if (!bucketList) {
+  //   const bucketDto = newBucketDto();
+  //   // indexedDb 에 추가하기
+  //   await setBucketList([bucketDto]);
+  //   return [bucketDto];
+  // }
   return bucketList;
 };
 // id 값을 매개변수로 받아서
@@ -56,13 +56,15 @@ export const getBucket = async (id) => {
 
 export const newBucket = async () => {
   const bucketDto = newBucketDto();
-  const bucketList = await getBucketList();
+  // DB 에서 데이터를 가져왔는데 데이터가 하나도 없으면(null)
+  // 빈 배열([]) 로 초기화 하라
+  const bucketList = (await getBucketList()) || [];
   /**
    * JS 에서 기존 배열에 새로운 값을 추가하기
    * 배열.push(item) : 배열의 끝에 새로운 item 추가하기
    * 배열.unshift(item) : 배열의 맨 처음에 추가하기
    */
-  bucketList.unshift(bucketDto);
+  bucketList?.unshift(bucketDto);
   await setBucketList(bucketList);
   return bucketDto;
 };
