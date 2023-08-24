@@ -11,6 +11,19 @@
     }
     & img {
       border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      margin: 10px 0 0 20px;
+      /*
+      img tag 와 text또는 inline tag 들이 서로 어울리는 배치를
+      하기 위한 설정
+      */
+      float: left;
+    }
+    & span {
+      display: inline-block;
+      line-height: 50px;
+      padding-left: 20px;
     }
   }
   & a {
@@ -30,9 +43,18 @@
     border-radius: 45px;
     background: linear-gradient(145deg, #f0f0f0, #cacaca);
     box-shadow: 21px 21px 42px #bcbcbc, -21px -21px 42px #fff;
+    &.active {
+      color: red;
+    }
+
     &:hover {
       background: linear-gradient(145deg, #cacaca, #f0f0f0);
       //   border: 1px solid #aaa;
     }
   }
+}
+
+.aa {
+  justify-content: center;
+  align-items: center;
 }
