@@ -6,6 +6,9 @@ const UL = styled.ul`
   & a.active {
     color: red;
   }
+  & a span.complete {
+    text-decoration: line-through;
+  }
 `;
 
 const BucketList = () => {

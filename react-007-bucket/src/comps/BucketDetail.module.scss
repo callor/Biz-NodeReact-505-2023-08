@@ -20,12 +20,39 @@
       font-weight: 700;
       margin: 0;
       line-height: 1.2;
+      & form {
+        display: flex;
+        align-items: center;
+        margin-top: 0.25rem;
+        & button {
+          border: 0;
+          outline: none;
+          background-color: white;
+          box-shadow: none;
+          font-weight: 400;
+          font-size: 1.2rem;
+          padding: 0;
+          &:hover {
+            transform: scale(1.2);
+            cursor: pointer;
+          }
+        }
+      }
     }
     & div {
       display: flex;
       justify-content: flex-start;
       // flex item 들의 간격을 설정
       gap: 5px;
+    }
+  }
+  & button.delete {
+    &:disabled {
+      background-color: #aaa;
+      cursor: not-allowed;
+    }
+    &:disabled:hover {
+      box-shadow: none;
     }
   }
 }

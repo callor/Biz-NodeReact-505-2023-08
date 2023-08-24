@@ -13,7 +13,9 @@ const BucketItem = ({ item }) => {
           width="30px"
           height="30px"
         />
-        <span>{item.bucket}</span>
+        <span className={item.complete ? "complete" : "none"}>
+          {item.bucket}
+        </span>
       </NavLink>
     </li>
   );
