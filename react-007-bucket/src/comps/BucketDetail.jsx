@@ -39,11 +39,22 @@ export const deleteAction = async ({ params }) => {
   return redirect(`/content/${params.id}`);
 };
 
+export const favoriteAction = async ({ params, request }) => {
+  const formData = await request.formData();
+  const resultBucket = await getBucket(params.id);
+  // formData() 데이터 중에서 input 에 저장된 데이터만 추출하기
+  // const newBucket = Object.fromEntries(formData);
+  const favorite = formData.get("favorite") === "true";
+  const updateBucket = { ...resultBucket, favoite: !favorite };
+  await saveBucket(updateBucket);
+  return "";
+};
+
 const Favorite = ({ bucket }) => {
   let favorite = bucket.favoite;
   return (
-    <Form>
-      <button name="favorite" value={toString(favorite)}>
+    <Form method="POST">
+      <button name="favorite" value={favorite ? "true" : "false"}>
         {favorite ? "★" : "☆"}
       </button>
     </Form>

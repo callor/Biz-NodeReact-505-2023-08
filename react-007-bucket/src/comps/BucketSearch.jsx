@@ -1,6 +1,6 @@
 import Input from "../shareComps/SearchInput";
 import Button from "../shareComps/Button";
-import { Form } from "react-router-dom";
+import { Form, useSubmit, useLoaderData } from "react-router-dom";
 import styled from "styled-components";
 
 const StyledInputDiv = styled.div`
@@ -20,9 +20,19 @@ const StyledInputDiv = styled.div`
 `;
 
 const BucketSearch = () => {
+  const submit = useSubmit();
+  const { search } = useLoaderData;
+
+  const inputChange = (e) => {
+    const isFirstSearch = search == null;
+    submit(e.currentTarget.form, { replace: !isFirstSearch });
+  };
+
   return (
     <StyledInputDiv>
-      <Input />
+      <Form>
+        <Input name="search" onChange={inputChange} />
+      </Form>
       <Form method="POST">
         <Button>새로작성</Button>
       </Form>

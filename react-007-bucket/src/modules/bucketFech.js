@@ -30,8 +30,18 @@ export const newBucketDto = () => {
   return bucketDto;
 };
 
-export const getBucketList = async () => {
+export const getBucketList = async (search = "") => {
   const bucketList = await localforage.getItem(LOCAL_DB);
+  if (search) {
+    search = search.toUpperCase();
+    const resultBucketList = bucketList.filter((item) => {
+      const bYes = item.bucket.toUpperCase().indexOf(search) > -1;
+      return bYes;
+    });
+    return resultBucketList;
+  }
+  return bucketList;
+
   // db에서 get 한 데이터가 없으면 임시 데이터를 생성하고
   // db에 insert 한 후 그 데이터를 return
   // if (!bucketList) {
@@ -40,7 +50,6 @@ export const getBucketList = async () => {
   //   await setBucketList([bucketDto]);
   //   return [bucketDto];
   // }
-  return bucketList;
 };
 // id 값을 매개변수로 받아서
 // 리스트 중 id 값에 해당하는 한개의 item을 return

@@ -51,9 +51,11 @@ const UL = styled.ul`
   }
 `;
 
-export const mainLoader = async () => {
-  const bucketList = await getBucketList();
-  return { bucketList };
+export const mainLoader = async ({ request }) => {
+  const url = new URL(request.url);
+  const search = url.searchParams.get("search");
+  const bucketList = await getBucketList(search);
+  return { bucketList, search };
 };
 
 export const mainAction = async () => {

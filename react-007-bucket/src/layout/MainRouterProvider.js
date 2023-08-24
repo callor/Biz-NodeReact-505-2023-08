@@ -13,6 +13,7 @@ import BucketDetail, {
   detailLoader,
   deleteAction,
   completeAction,
+  favoriteAction,
 } from "../comps/BucketDetail";
 import BucketUpdate, { updateAction } from "../comps/BucketUpdate";
 import BucketIndex from "../comps/BucketIndex";
@@ -37,6 +38,7 @@ const router = createBrowserRouter([
         path: "content/:id",
         element: <BucketDetail />,
         loader: detailLoader,
+        action: favoriteAction,
       },
       {
         path: "content/:id/edit",

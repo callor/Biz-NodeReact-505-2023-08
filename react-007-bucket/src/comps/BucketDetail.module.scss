@@ -23,7 +23,7 @@
       & form {
         display: flex;
         align-items: center;
-        margin-top: 0.25rem;
+        margin: 0.25rem 1rem;
         & button {
           border: 0;
           outline: none;
@@ -36,6 +36,12 @@
             transform: scale(1.2);
             cursor: pointer;
           }
+        }
+        & button[value="false"] {
+          color: #eeb004;
+        }
+        & button[value="true"] {
+          color: #5146e4;
         }
       }
     }
