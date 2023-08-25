@@ -1,0 +1,61 @@
+.buck_ul {
+  margin: 10px;
+  list-style: none;
+  & li {
+    padding: 0;
+    margin: 7px auto;
+    text-align: left;
+    color: blue;
+    &:hover {
+      cursor: pointer;
+    }
+    & img {
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      margin: 10px 0 0 20px;
+      /*
+      img tag 와 text또는 inline tag 들이 서로 어울리는 배치를
+      하기 위한 설정
+      */
+      float: left;
+    }
+    & span {
+      display: inline-block;
+      line-height: 50px;
+      padding-left: 20px;
+    }
+  }
+  & a {
+    box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.2),
+      2px 3px 3px 3px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    display: inline-block;
+    width: 100%;
+    padding: -5px 16px 5px;
+
+    margin: 0;
+    color: inherit;
+    border: 1px solid transparent;
+    // line-height : 표현되는 글자의 높이를 지정하는 속성
+    // 다른 tag 와 중간 위치를 정렬할때 트릭으로 사용할수 있는 속성
+
+    border-radius: 45px;
+    background: linear-gradient(145deg, #f0f0f0, #cacaca);
+    box-shadow: 21px 21px 42px #bcbcbc, -21px -21px 42px #fff;
+    &.active {
+      color: red;
+    }
+
+    &:hover {
+      background: linear-gradient(145deg, #cacaca, #f0f0f0);
+      //   border: 1px solid #aaa;
+    }
+  }
+}
+
+.aa {
+  justify-content: center;
+  align-items: center;
+  text-decoration: line-through;
+}

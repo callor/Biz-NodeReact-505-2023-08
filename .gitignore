@@ -84,11 +84,10 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-
 # mySec File
-
 myData.go.kr.key.js
 naver_secret.js
+firebaseConfig.js
 
 # ETC
 .bak

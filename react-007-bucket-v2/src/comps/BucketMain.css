@@ -1,0 +1,22 @@
+aside {
+  width: 22rem;
+  background-color: #f7f7f7;
+  border-right: solid 2px #cccc;
+  display: flex;
+  flex-direction: column;
+}
+
+ul {
+  list-style: none;
+}
+
+ul li {
+  text-align: left;
+  box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.2),
+    2px 3px 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+ul a {
+  text-decoration: none;
+  color: inherit;
+}
