@@ -6,10 +6,7 @@ import {
 } from "react-router-dom";
 import css from "./BucketUpdate.module.scss";
 import Button from "../shareComps/Button";
-import {
-  getBucket,
-  updateBucket,
-} from "../modules/firebaseDBProvider";
+import { getBucket, saveBucket } from "../modules/firebaseDBProvider";
 import dImage from "../assets/default.png";
 import { useRef } from "react";
 
@@ -40,7 +37,7 @@ export const updateAction = async ({ request, params }) => {
   // DB 로부터 SELECT 한 bucket 에 input 으로 입력한 데이터를
   // Update 하여 새로운 bucket 생성하기
   const newBucket = { ...result, ...inputBucket };
-  await updateBucket(newBucket);
+  await saveBucket(newBucket);
   return redirect(`/content/${id}`);
 };
 
@@ -60,7 +57,7 @@ const BucketUpdate = () => {
       const reader = new FileReader();
       reader.onload = async () => {
         console.log(reader.result);
-        await updateBucket({ ...bucket, img_src: reader.result });
+        await saveBucket({ ...bucket, img_src: reader.result });
         return submit(null);
       };
       reader.readAsDataURL(file);

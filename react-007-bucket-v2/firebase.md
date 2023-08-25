@@ -35,3 +35,10 @@ npx firebase-tools login
 npx firebase-tools init
 npx firebase-tools deploy
 ```
+
+## firebase 에 배포하기
+
+```bash
+firebase login
+npm run build
+```
