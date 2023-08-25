@@ -41,4 +41,12 @@ npx firebase-tools deploy
 ```bash
 firebase login
 npm run build
+
+firebase init
+    # ( ) Hosting:Configure files ... 선택
+    # Use an existing project 선택
+    # 배포할 프로젝트 선택
+    # public 폴더 입력 : build
+    # 기타 나머지는 모두 N
+firebase deploy
 ```
