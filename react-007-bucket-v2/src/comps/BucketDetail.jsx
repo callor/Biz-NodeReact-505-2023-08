@@ -1,9 +1,4 @@
-import {
-  Form,
-  useLoaderData,
-  redirect,
-  Navigate,
-} from "react-router-dom";
+import { Form, useLoaderData, redirect } from "react-router-dom";
 import dImage from "../assets/default.png";
 import Button from "../shareComps/Button";
 import css from "./BucketDetail.module.scss";
@@ -11,7 +6,7 @@ import {
   deleteBucket,
   getBucket,
   saveBucket,
-} from "../modules/bucketFech";
+} from "../modules/firebaseDBProvider";
 
 export const detailLoader = async ({ params }) => {
   // const id = params.id

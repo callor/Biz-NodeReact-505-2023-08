@@ -1,7 +1,10 @@
 import styled from "styled-components";
 import BucketSearch from "./BucketSearch";
 import { Outlet, redirect } from "react-router-dom";
-import { getBucketList, newBucket } from "../modules/bucketFech";
+import {
+  getBucketList,
+  newBucket,
+} from "../modules/firebaseDBProvider";
 import BucketList from "./BucketList";
 
 const ASideBar = styled.aside`
